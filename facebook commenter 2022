@@ -17,11 +17,11 @@ action = ActionChains(driver)
 time.sleep(5)
 comment_boxes = []
 all_commented_boxes = []
-message = "Hello Guys, how is your day?"
+message = "I am competent writer in this field. I am ready to work on your thesis/assignment/work. Quality non-plagiarized work guaranteed. Kindly DM me with assignment details and further instructions. Thank you. Email: gitongawriting@gmail.com WhatsApp: +12029844786"
 def login():
     email = driver.find_element(By.ID, "email")
     password = driver.find_element(By.ID,"pass")
-    email.send_keys("jumajohn95@yahoo.com")
+    email.send_keys("jumajake@mailfence.com")
     password.send_keys("Pass@123")
     password.submit()
 def get_posts():
@@ -57,26 +57,32 @@ def check_Status():
     except:
         return "FALSE"
 def click_on_comment_box():
-    time.sleep(30)
     while(comment_boxes!=[]):
         for inputbox in comment_boxes:
-            location = inputbox.location
-            size = inputbox.size
-            w, h = size['width'], size['height']
-            x, y = location['x'], location['y']
+            
+            try:
+                location = inputbox.location
+                size = inputbox.size
+                w, h = size['width'], size['height']
+                x, y = location['x'], location['y']
 
-            print(location)
-            print(size)
-            print(x, y)
-            action.move_to_element_with_offset(driver.find_element(By.TAG_NAME,'body'), 0,0)
-            action.move_to_element(inputbox)
-            action.move_by_offset(0, -17).click().perform()
-            saySomething(message)
-            all_commented_boxes.append(inputbox)
-            comment_boxes.remove(inputbox)
-            time.sleep(5)
+                print(location)
+                print(size)
+                print(x, y)
+                action.move_to_element_with_offset(driver.find_element(By.TAG_NAME,'body'), 0,0)
+                action.move_to_element(inputbox)
+                action.move_by_offset(0, -17).click().perform()
+                saySomething(message)
+            except Exception as x:
+                print(x)
+            finally:
+                all_commented_boxes.append(inputbox)
+                comment_boxes.remove(inputbox)
+                time.sleep(5)
         time.sleep(10)
  
 login()
 t = threading.Thread(target=get_posts)#this thread will run while the selenium driver is active
 t.start()
+
+
